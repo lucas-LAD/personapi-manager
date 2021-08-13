@@ -1,4 +1,3 @@
-/*
 package one.digitalinnovation.personapi.service;
 
 import one.digitalinnovation.personapi.dto.request.PersonDTO;
@@ -18,33 +17,33 @@ import static one.digitalinnovation.personapi.utils.PersonUtils.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+
 @ExtendWith(MockitoExtension.class)
 public class PersonServiceTest {
 
     @Mock
     private PersonRepository personRepository;
-
     @InjectMocks
     private PersonService personService;
 
     @Test
-    void testGivenPersonDTOThenReturnSavedMessage() {
+    void testGivenPersonDTOThenReturnSavedMessage(){
         PersonDTO personDTO = createFakeDTO();
         Person expectedSavedPerson = createFakeEntity();
 
-        when(personRepository.save(any(Person.class))).thenReturn(expectedSavedPerson);
+        Mockito.when(personRepository.save(any(Person.class))).thenReturn(expectedSavedPerson);
 
-        MessageResponseDTO expectedSuccessMessage = createExpectedMessageResponse(expectedSavedPerson.getId());
-        MessageResponseDTO succesMessage = personService.createPerson(personDTO);
+        MessageResponseDTO expectedSucessMessage = createMessageResponse(expectedSavedPerson.getId());
+        MessageResponseDTO sucessMessage = personService.createPerson(personDTO);
 
-        assertEquals(expectedSuccessMessage, succesMessage);
+        Assertions.assertEquals(expectedSucessMessage, sucessMessage);
     }
 
-    private MessageResponseDTO createExpectedMessageResponse(Long id) {
+    private MessageResponseDTO createMessageResponse(Long id) {
         return MessageResponseDTO
                 .builder()
-                .message("Created person with ID " + id)
+                .message("Created Person with ID" + id)
                 .build();
     }
+
 }
-*/
