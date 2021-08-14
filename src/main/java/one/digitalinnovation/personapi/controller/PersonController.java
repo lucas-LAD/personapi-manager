@@ -8,21 +8,20 @@ import one.digitalinnovation.personapi.exception.PersonNotFoundException;
 import one.digitalinnovation.personapi.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
+@Controller
 @RestController
 @RequestMapping("/api/v1/people")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonController {
 
     private PersonService personService;
-
-    @Autowired
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -51,36 +50,4 @@ public class PersonController {
     public void deleteById(@PathVariable Long id) throws PersonNotFoundException{
         personService.delete(id);
     }
-/*
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDTO) {
-        return personService.createPerson(personDTO);
-    }
-
-     @GetMapping
-     public String getBook(){
-        return "API teste!";
-     }
-//    public List<PersonDTO> listAll() {
-//        return
-//                personService.listAll();
-//    }
-///home/lucas/.sdkman/candidates/java/11.0.11.hs-adpt
-    @GetMapping("/{id}")
-    public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
-        return personService.findById(id);
-    }
-
-    @PutMapping("/{id}")
-    public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid PersonDTO personDTO) throws PersonNotFoundException {
-        return personService.updateById(id, personDTO);
-    }
-
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable Long id) throws PersonNotFoundException {
-        personService.delete(id);
-    }*/
 }
